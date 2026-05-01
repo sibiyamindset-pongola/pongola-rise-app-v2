@@ -1,49 +1,56 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class BusinessScreen extends StatelessWidget {
   const BusinessScreen({super.key});
-
-  final List<Map<String, String>> businesses = const [
-    {
-      'name': 'Pongola Bakery',
-      'type': 'Food & Bakery',
-    },
-    {
-      'name': 'Mthethwa Repairs',
-      'type': 'Phone Repairs',
-    },
-    {
-      'name': 'Rise Fashion',
-      'type': 'Clothing Store',
-    },
-    {
-      'name': 'Pongola Taxis',
-      'type': 'Transport',
-    },
-  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Businesses'),
+        title: const Text("Businesses"),
       ),
-      body: ListView.builder(
-        itemCount: businesses.length,
-        itemBuilder: (context, index) {
-          final item = businesses[index];
+      body: StreamBuilder<QuerySnapshot>(
+        stream: FirebaseFirestore.instance
+            .collection('businesses')
+            .snapshots(),
+        builder: (context, snapshot) {
 
-          return Card(
-            margin: const EdgeInsets.all(10),
-            child: ListTile(
-              leading: const Icon(Icons.store),
-              title: Text(item['name']!),
-              subtitle: Text(item['type']!),
-              trailing: ElevatedButton(
-                onPressed: () {},
-                child: const Text('View'),
-              ),
-            ),
+          if (snapshot.connectionState ==
+              ConnectionState.waiting) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+
+          if (!snapshot.hasData ||
+              snapshot.data!.docs.isEmpty) {
+            return const Center(
+              child: Text("No businesses added yet"),
+            );
+          }
+
+          final docs = snapshot.data!.docs;
+
+          return ListView.builder(
+            itemCount: docs.length,
+            itemBuilder: (context, index) {
+              final data =
+                  docs[index].data()
+                      as Map<String, dynamic>;
+
+              return Card(
+                margin: const EdgeInsets.all(10),
+                child: ListTile(
+                  leading: const Icon(Icons.store),
+                  title: Text(data['name'] ?? ''),
+                  subtitle: Text(data['type'] ?? ''),
+                  trailing: Text(
+                    data['phone'] ?? '',
+                  ),
+                ),
+              );
+            },
           );
         },
       ),
