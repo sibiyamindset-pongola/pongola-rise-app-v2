@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'features/jobs/jobs_screen.dart';
 import 'features/learn/learn_screen.dart';
+import 'features/business/business_screen.dart';
 
 void main() {
   runApp(const PongolaRiseApp());
@@ -16,7 +17,6 @@ class PongolaRiseApp extends StatelessWidget {
       title: 'Pongola Rise',
       theme: ThemeData(
         primarySwatch: Colors.green,
-        scaffoldBackgroundColor: Colors.grey.shade100,
       ),
       home: const HomeScreen(),
     );
@@ -26,11 +26,32 @@ class PongolaRiseApp extends StatelessWidget {
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
+  Widget menuButton({
+    required IconData icon,
+    required String text,
+    required VoidCallback onTap,
+  }) {
+    return SizedBox(
+      width: double.infinity,
+      child: ElevatedButton.icon(
+        icon: Icon(icon),
+        label: Padding(
+          padding: const EdgeInsets.all(14),
+          child: Text(
+            text,
+            style: const TextStyle(fontSize: 18),
+          ),
+        ),
+        onPressed: onTap,
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Pongola Rise'),
+        title: const Text("Pongola Rise"),
         centerTitle: true,
       ),
       body: Padding(
@@ -40,55 +61,57 @@ class HomeScreen extends StatelessWidget {
             const SizedBox(height: 30),
 
             const Text(
-              'Empowering Pongola Youth',
+              "Empowering Pongola Community",
               style: TextStyle(
-                fontSize: 26,
+                fontSize: 25,
                 fontWeight: FontWeight.bold,
               ),
               textAlign: TextAlign.center,
             ),
 
-            const SizedBox(height: 10),
-
-            const Text(
-              'Jobs • Skills • Growth',
-              style: TextStyle(fontSize: 16),
-            ),
-
             const SizedBox(height: 40),
 
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton.icon(
-                icon: const Icon(Icons.work),
-                label: const Text('Jobs'),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => const JobsScreen(),
-                    ),
-                  );
-                },
-              ),
+            menuButton(
+              icon: Icons.work,
+              text: "Jobs",
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const JobsScreen(),
+                  ),
+                );
+              },
             ),
 
             const SizedBox(height: 15),
 
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton.icon(
-                icon: const Icon(Icons.school),
-                label: const Text('Learn'),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => const LearnScreen(),
-                    ),
-                  );
-                },
-              ),
+            menuButton(
+              icon: Icons.school,
+              text: "Learn",
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const LearnScreen(),
+                  ),
+                );
+              },
+            ),
+
+            const SizedBox(height: 15),
+
+            menuButton(
+              icon: Icons.store,
+              text: "Businesses",
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const BusinessScreen(),
+                  ),
+                );
+              },
             ),
           ],
         ),
