@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'features/jobs/jobs_screen.dart';
+import 'features/learn/learn_screen.dart';
 
 void main() {
   runApp(const PongolaRiseApp());
@@ -15,6 +16,7 @@ class PongolaRiseApp extends StatelessWidget {
       title: 'Pongola Rise',
       theme: ThemeData(
         primarySwatch: Colors.green,
+        scaffoldBackgroundColor: Colors.grey.shade100,
       ),
       home: const HomeScreen(),
     );
@@ -29,20 +31,31 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Pongola Rise'),
+        centerTitle: true,
       ),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
           children: [
             const SizedBox(height: 30),
+
             const Text(
               'Empowering Pongola Youth',
               style: TextStyle(
-                fontSize: 24,
+                fontSize: 26,
                 fontWeight: FontWeight.bold,
               ),
+              textAlign: TextAlign.center,
             ),
-            const SizedBox(height: 30),
+
+            const SizedBox(height: 10),
+
+            const Text(
+              'Jobs • Skills • Growth',
+              style: TextStyle(fontSize: 16),
+            ),
+
+            const SizedBox(height: 40),
 
             SizedBox(
               width: double.infinity,
@@ -54,6 +67,24 @@ class HomeScreen extends StatelessWidget {
                     context,
                     MaterialPageRoute(
                       builder: (_) => const JobsScreen(),
+                    ),
+                  );
+                },
+              ),
+            ),
+
+            const SizedBox(height: 15),
+
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton.icon(
+                icon: const Icon(Icons.school),
+                label: const Text('Learn'),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => const LearnScreen(),
                     ),
                   );
                 },
