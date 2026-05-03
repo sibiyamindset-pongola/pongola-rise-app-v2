@@ -1,11 +1,11 @@
-name: myapp
-description: "A new Flutter project."
+name: pongola_rise_app_v2
+description: Pongola Rise App V2 🚀
 publish_to: 'none'
 
 version: 1.0.0+1
 
 environment:
-  sdk: ^3.11.5
+  sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
   flutter:
@@ -13,9 +13,14 @@ dependencies:
 
   cupertino_icons: ^1.0.8
 
-  # 🔥 Firebase
+  # 🔥 Firebase Core
   firebase_core: ^2.30.0
+
+  # 🔥 Firestore
   cloud_firestore: ^4.15.0
+
+  # 🔐 Firebase Auth (IMPORTANT)
+  firebase_auth: ^4.17.0
 
 dev_dependencies:
   flutter_test:
