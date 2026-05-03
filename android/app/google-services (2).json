@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1063069509580",
+    "project_id": "pongola-rise",
+    "storage_bucket": "pongola-rise.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1063069509580:android:c6d5e5c1a5dc9c70ef5f69",
+        "android_client_info": {
+          "package_name": "com.pongola.rise"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9E8u7SkOPXJmIJY1ecy3dzGH7i57Itlw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1063069509580:android:eb97ba1edbcf881cef5f69",
+        "android_client_info": {
+          "package_name": "com.pongolarise.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD9E8u7SkOPXJmIJY1ecy3dzGH7i57Itlw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
